@@ -39,17 +39,17 @@ export const notifyUsersHandler = async (
     await sendNotification({
       contents: {
         en: params.webpush_notify.contents.en,
-        cs: params.webpush_notify.contents.cs,
+        fr: params.webpush_notify.contents.fr,
       },
       url: params.webpush_notify.url,
       include_external_user_ids: ids,
       subtitle: {
         en: params.webpush_notify.subtitle?.en,
-        cs: params.webpush_notify.subtitle?.cs,
+        fr: params.webpush_notify.subtitle?.fr,
       },
       headings: {
         en: params.webpush_notify.headings.en,
-        cs: params.webpush_notify.headings.cs,
+        fr: params.webpush_notify.headings.fr,
       },
     });
     return {

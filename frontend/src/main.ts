@@ -7,7 +7,6 @@ import { createHead } from "@vueuse/head";
 import "@unocss/reset/tailwind.css";
 import "./styles/main.css";
 import "uno.css";
-import { useAuthStore } from "./store/auth";
 import { apolloClient, nhost } from "./modules/nhost";
 import { ViteCreateApp } from "./createApp";
 
@@ -21,23 +20,8 @@ export const createApp = ViteCreateApp(
     Object.values(import.meta.globEager("./modules/*.ts")).forEach((i) =>
       i.install?.(ctx)
     );
-    const authStore = useAuthStore();
 
-    nhost.auth.isAuthenticatedAsync().then((state) => {
-      // console.log(state);
-      // if (state) {
-      //   authStore.setAuth(nhost.auth.getSession());
-      // }
-    });
-    // .then(() => app.mount("#app"));
 
-    nhost.auth.onAuthStateChanged((event, session) => {
-      if (event === "SIGNED_OUT") {
-        console.log("clear store");
-        apolloClient.clearStore();
-      }
-      authStore.setAuth(session);
-    });
   }
 );
 

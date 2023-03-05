@@ -23,7 +23,6 @@ export const apolloClient = createApolloClient({ nhost });
 export { Session, User };
 
 export const install: UserModule = ({ app, router }) => {
-  // console.log(router);
   app.use(nhost);
   app.provide(DefaultApolloClient, apolloClient);
   // app.use(VueApolloComponents);
