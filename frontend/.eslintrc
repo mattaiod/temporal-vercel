@@ -1,5 +1,6 @@
-{ "extends": "@antfu",
+{
+  "extends": ["@antfu"],
   "rules": {
-    "no-var": "error"
+    "@typescript-eslint/no-console": "error"
   }
 }
