@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
     "baseUrl": ".",
     "module": "ESNext",
     "target": "ESNext",
@@ -11,9 +13,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "incremental": false,
-    "noUnusedLocals": true,
+
     "noImplicitOverride": true,
-    "noUnusedParameters": true,
+
     "noImplicitReturns": true,
     "strictNullChecks": true,
     "allowJs": false,
