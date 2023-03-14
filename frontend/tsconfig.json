@@ -15,6 +15,9 @@
     "incremental": false,
 
     "noImplicitOverride": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
 
     "noImplicitReturns": true,
     "strictNullChecks": true,
