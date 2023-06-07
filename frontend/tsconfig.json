@@ -19,8 +19,6 @@
     "noImplicitThis": true,
     "strictFunctionTypes": true,
 
-    // Strict mode (9)
-
     "alwaysStrict": true,
 
     "strictBindCallApply": true,
@@ -28,14 +26,9 @@
     "strictPropertyInitialization": true,
     "useUnknownInCatchVariables": true,
 
-    // No unused code (4)
-
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
 
-    // No implicit code (2)
-
-    // Others (5)
     "noUncheckedIndexedAccess": true,
     "noPropertyAccessFromIndexSignature": true,
     "noFallthroughCasesInSwitch": true,

@@ -1,14 +1,14 @@
-export {};
+import "vue-router"
 
-import "vue-router";
+export {}
 
 declare module "vue-router" {
   interface RouteMeta {
     // is optional
-    isAdmin?: boolean;
+    isAdmin?: boolean
     // must be declared by every route
-    requiresAuth?: boolean;
-    requiresNotAuth?: boolean;
-    roles?: string[];
+    requiresAuth?: boolean
+    requiresNotAuth?: boolean
+    roles?: string[]
   }
 }

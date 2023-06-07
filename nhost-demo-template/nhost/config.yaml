@@ -2,7 +2,7 @@ metadata_directory: metadata
 services:
   hasura:
     environment:
-      hasura_graphql_enable_remote_schema_permissions: false
+      hasura_graphql_enable_remote_schema_permissions: true
   minio:
     port: 9010
     environment:
@@ -24,7 +24,7 @@ auth:
       allowed_redirect_urls: ""
   anonymous_users_enabled: false
   client_url: http://localhost:4010
-  disable_new_users: false
+  disable_new_users: true
   email:
     enabled: true
     passwordless:

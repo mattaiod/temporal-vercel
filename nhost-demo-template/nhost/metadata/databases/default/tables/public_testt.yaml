@@ -1,0 +1,11 @@
+table:
+  name: testt
+  schema: public
+insert_permissions:
+  - role: public
+    permission:
+      check:
+        _and:
+          - nake:
+              _eq: fdf
+      columns: []
