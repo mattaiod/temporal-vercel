@@ -2,8 +2,6 @@
 import { useApolloClient, useLazyQuery, useQuery } from "@vue/apollo-composable"
 import { gql } from "@apollo/client/core"
 
-console.log(3)
-
 const { resolveClient } = useApolloClient()
 const client = resolveClient()
 
