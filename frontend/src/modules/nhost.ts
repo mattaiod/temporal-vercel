@@ -3,6 +3,7 @@ import { createApolloClient } from "@nhost/apollo"
 import { DefaultApolloClient } from "@vue/apollo-composable"
 // import VueApolloComponents from "@vue/apollo-components";
 import { type Session, type User } from "@nhost/hasura-auth-js"
+import { setContext } from "@apollo/client/link/context"
 import type { UserModule } from "~/types"
 
 const backendUrl = import.meta.env.VITE_NHOST_URL
@@ -18,7 +19,12 @@ export const nhost = backendUrl
       subdomain,
     })
 
-export const apolloClient = createApolloClient({ nhost })
+export const apolloClient = createApolloClient({
+  nhost,
+  headers: {
+    "x-hasura-admin-secret": "nhost-admin-secret",
+  },
+})
 
 export { Session, User }
 
