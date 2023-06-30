@@ -1,1 +1,10 @@
 .secrets.nhost
+nhost/.env.development
+nhost/*.env
+nhost/*.development
+nhost/.env.development
+.env.*
+.env.development
+.secrets.nhost
+.secrets
+.nhost/*
