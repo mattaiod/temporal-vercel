@@ -7,4 +7,5 @@ nhost/.env.development
 .env.development
 .secrets.nhost
 .secrets
-.nhost/*
+.nhost
+.nhost/data/nogit*

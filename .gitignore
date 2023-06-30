@@ -16,3 +16,4 @@ nhost/.env.development
 .env.development
 .secrets.nhost
 .secrets
+backend/.nhost/data/nogit*
