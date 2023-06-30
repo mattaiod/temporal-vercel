@@ -1,11 +1,11 @@
-import { UserModule } from "~/types";
-import OneSignalVuePlugin from "@onesignal/onesignal-vue3";
-import { i18n } from "./i18n";
+import OneSignalVuePlugin from "@onesignal/onesignal-vue3"
+import { i18n } from "./i18n"
+import type { UserModule } from "~/types"
 
-const appId = import.meta.env.VITE_ONESIGNAL_APP_ID;
-const localhost = import.meta.env.VITE_ONESIGNAL_LOCALHOST as boolean | false;
+const appId = import.meta.env.VITE_ONESIGNAL_APP_ID
+const localhost = import.meta.env.VITE_ONESIGNAL_LOCALHOST as boolean | false
 
-export const isOnesignalConfigured = appId ? true : false;
+export const isOnesignalConfigured = Boolean(appId)
 
 const appInit = localhost
   ? {
@@ -14,10 +14,10 @@ const appInit = localhost
     }
   : {
       appId,
-    };
+    }
 
 export const install: UserModule = ({ app }) => {
-  const { t } = i18n.global;
+  const { t } = i18n.global
 
   if (isOnesignalConfigured) {
     app.use(OneSignalVuePlugin, {
@@ -53,12 +53,8 @@ export const install: UserModule = ({ app }) => {
                 cancelButton: t("onesignal.slidedown.category.cancelButton"),
 
                 /* CATEGORY SLIDEDOWN SPECIFIC TEXT */
-                negativeUpdateButton: t(
-                  "onesignal.slidedown.category.negativeUpdateButton"
-                ),
-                positiveUpdateButton: t(
-                  "onesignal.slidedown.category.positiveUpdateButton"
-                ),
+                negativeUpdateButton: t("onesignal.slidedown.category.negativeUpdateButton"),
+                positiveUpdateButton: t("onesignal.slidedown.category.positiveUpdateButton"),
                 updateMessage: t("onesignal.slidedown.category.updateMessage"),
               },
               delay: {
@@ -79,8 +75,8 @@ export const install: UserModule = ({ app }) => {
           ],
         },
       },
-    });
+    })
   } else {
-    console.log(t("onesignal.notConfigured"));
+    console.log(t("onesignal.notConfigured"))
   }
-};
+}

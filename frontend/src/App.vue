@@ -1,18 +1,18 @@
 <script setup lang="ts">
 useHead({
-  title: 'The Big Project',
+  title: "Temporal",
   meta: [
-    { name: 'description', content: 'Best framework ever' },
+    { name: "description", content: "Temporal" },
     {
-      name: 'theme-color',
-      content: computed(() => isDark.value ? '#00aba9' : '#ffffff'),
+      name: "theme-color",
+      content: computed(() => (isDark.value ? "#00aba9" : "#ffffff")),
     },
   ],
   link: [
     {
-      rel: 'icon',
-      type: 'image/svg+xml',
-      href: computed(() => preferredDark.value ? '/icons/favicon-dark.svg' : '/icons/favicon.svg'),
+      rel: "icon",
+      type: "image/svg+xml",
+      href: computed(() => (preferredDark.value ? "/icons/favicon-dark.svg" : "/icons/favicon.svg")),
     },
   ],
 })

@@ -1,29 +1,21 @@
-import { setupLayouts } from "virtual:generated-layouts";
-import App from "./App.vue";
-import { createRouter, createWebHistory } from "vue-router";
-import generatedRoutes from "~pages";
-import { createHead } from "@vueuse/head";
+import { setupLayouts } from "virtual:generated-layouts"
+import { createRouter, createWebHistory } from "vue-router"
+import { createHead } from "@vueuse/head"
+import App from "./App.vue"
 
-import "@unocss/reset/tailwind.css";
-import "./styles/main.css";
-import "uno.css";
-import { apolloClient, nhost } from "./modules/nhost";
-import { ViteCreateApp } from "./createApp";
+import "@unocss/reset/tailwind.css"
+import "./styles/main.css"
+import "uno.css"
+import { apolloClient, nhost } from "./modules/nhost"
+import { ViteCreateApp } from "./createApp"
+import generatedRoutes from "~pages"
 
-const routes = setupLayouts(generatedRoutes);
+const routes = setupLayouts(generatedRoutes)
 
-export const createApp = ViteCreateApp(
-  App,
-  { routes, base: import.meta.env.BASE_URL },
-  (ctx) => {
-    // install all modules under `modules/`
-    Object.values(import.meta.globEager("./modules/*.ts")).forEach((i) =>
-      i.install?.(ctx)
-    );
-
-
-  }
-);
+export const createApp = ViteCreateApp(App, { routes, base: import.meta.env.BASE_URL }, (ctx) => {
+  // install all modules under `modules/`
+  Object.values(import.meta.globEager("./modules/*.ts")).forEach((i) => i.install?.(ctx))
+})
 
 /*
 const router = createRouter({
