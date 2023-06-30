@@ -1,23 +1,23 @@
-import path from "path";
-import { defineConfig, loadEnv } from "vite";
-import Vue from "@vitejs/plugin-vue";
-import Pages from "vite-plugin-pages";
+import path from "path"
+import { defineConfig, loadEnv } from "vite"
+import Vue from "@vitejs/plugin-vue"
+import Pages from "vite-plugin-pages"
 // import generateSitemap from 'vite-ssg-sitemap'
-import Layouts from "vite-plugin-vue-layouts";
-import Components from "unplugin-vue-components/vite";
-import { QuasarResolver } from "unplugin-vue-components/resolvers";
-import AutoImport from "unplugin-auto-import/vite";
-import { VitePWA } from "vite-plugin-pwa";
-import VueI18n from "@intlify/vite-plugin-vue-i18n";
-import Inspect from "vite-plugin-inspect";
-import Unocss from "unocss/vite";
-import { quasar, transformAssetUrls } from "@quasar/vite-plugin";
+import Layouts from "vite-plugin-vue-layouts"
+import Components from "unplugin-vue-components/vite"
+import { QuasarResolver } from "unplugin-vue-components/resolvers"
+import AutoImport from "unplugin-auto-import/vite"
+import { VitePWA } from "vite-plugin-pwa"
+import VueI18n from "@intlify/vite-plugin-vue-i18n"
+import Inspect from "vite-plugin-inspect"
+import Unocss from "unocss/vite"
+import { quasar, transformAssetUrls } from "@quasar/vite-plugin"
 // import generate from "vite-plugin-pages-sitemap";
 
 export default defineConfig(({ command, mode }) => {
   // Load env file based on `mode` in the current working directory.
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
-  const env = loadEnv(mode, process.cwd(), "");
+  const env = loadEnv(mode, process.cwd(), "")
   return {
     // vite config
     define: {
@@ -35,9 +35,7 @@ export default defineConfig(({ command, mode }) => {
         reactivityTransform: true,
         template: { transformAssetUrls },
       }),
-      quasar({
-
-      }),
+      quasar({}),
 
       // https://github.com/hannoeru/vite-plugin-pages
       Pages({
@@ -51,14 +49,7 @@ export default defineConfig(({ command, mode }) => {
 
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
-        imports: [
-          "vue",
-          "vue-router",
-          "vue-i18n",
-          "vue/macros",
-          "@vueuse/head",
-          "@vueuse/core",
-        ],
+        imports: ["vue", "vue-router", "vue-i18n", "vue/macros", "@vueuse/head", "@vueuse/core"],
         dts: "src/auto-imports.d.ts",
         dirs: ["src/composables", "src/store"],
         vueTemplate: true,
@@ -76,8 +67,6 @@ export default defineConfig(({ command, mode }) => {
       // https://github.com/antfu/unocss
       // see unocss.config.ts for config
       Unocss(),
-
-      
 
       // https://github.com/antfu/vite-plugin-pwa
       VitePWA({
@@ -141,7 +130,7 @@ export default defineConfig(({ command, mode }) => {
       noExternal: ["workbox-window", /vue-i18n/],
     },
     optimizeDeps: {
-      exclude: ["./nhost-demo-template/*"],
+      exclude: ["./nhost/*"],
     },
     build: {
       // reportCompressedSize: true,
@@ -160,5 +149,5 @@ export default defineConfig(({ command, mode }) => {
       //     },
       //   },
     },
-  };
-});
+  }
+})

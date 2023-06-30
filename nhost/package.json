@@ -1,5 +1,5 @@
 {
-  "name": "nhost-demo-template",
+  "name": "nhost",
   "version": "1.0.0",
   "description": "Template Nhost Io with vitesse",
   "main": "index.js",

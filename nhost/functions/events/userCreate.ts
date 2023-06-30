@@ -1,4 +1,4 @@
-import { Users } from "./../_utils/__generated__/graphql";
+import { Users } from "../_utils/__generated__/graphql";
 import { Request, Response } from "express";
 import { updateUserNotification } from "../_utils/helpers";
 import { getHash } from "../_utils/oneSignal";
