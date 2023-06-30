@@ -31,8 +31,7 @@ loadData()
 </script>
 
 <template>
-  <div v-if="loading">Loading query...</div>
-  <div v-else>
+  <div>
     <ul>
       <li v-for="item in state.result" :key="item">
         {{ item }}
