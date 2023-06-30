@@ -14,3 +14,4 @@ nhost/*.development
 nhost/.env.development
 .env.*
 .env.development
+.secrets.nhost
