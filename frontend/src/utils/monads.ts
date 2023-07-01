@@ -1,41 +1,12 @@
-/* Thrower */
-
-class ThrowClass<T> {
-  constructor(private value: T) {}
-
-  static of<T>(value: T): ThrowClass<T> {
-    return new ThrowClass(value)
-  }
-
-  from(): T {
-    return this.value
-  }
-}
+import { is, isGlobal, left, not, right, throwErr } from "./functions"
+import type { Class } from "./types"
 
 /* Maybe */
-class Maybe {
+export class Nothing {
   constructor() {}
 }
 
-class Nothing extends Maybe {
-  constructor() {
-    super()
-  }
-}
-
-class Just<T> extends Maybe {
-  constructor(private value: T) {
-    super()
-  }
-
-  from(): T {
-    return this.value
-  }
-}
-
-/* Either */
-
-class Either<T> {
+export class Just<T> {
   constructor(private value: T) {}
 
   from(): T {
@@ -43,18 +14,69 @@ class Either<T> {
   }
 }
 
-class Left<T> extends Either<T> {
+export type Maybe<T> = Nothing | Just<T>
+
+/* Either */
+abstract class EitherClass<T> {
+  constructor(private value: T) {}
+
+  from(): T {
+    return this.value
+  }
+}
+
+export class Left<T> extends EitherClass<T> {
   constructor(value: T) {
     super(value)
   }
 }
 
-class Right<T> extends Either<T> {
+export class Right<T> extends EitherClass<T> {
   constructor(value: T) {
     super(value)
   }
 }
 
-const failFast = <T>(val: T): ThrowClass<T> => {
-  throw val
+export type Either<L, R> = Left<L> | Right<R>
+
+// thrower
+abstract class ThrowerClass<T> {
+  constructor(private value: T) {}
+
+  from(): T {
+    return this.value
+  }
+}
+
+export class ThrowLeft<T> extends ThrowerClass<T> {
+  constructor(value: T) {
+    super(value)
+  }
+}
+
+export class ThrowRight<T> extends ThrowerClass<T> {
+  constructor(value: T) {
+    super(value)
+  }
+}
+
+export type Thrower<L, R> = ThrowLeft<L> | ThrowRight<R> | R
+
+export const catchThrower = <L, R>(fn: () => Thrower<L, R>): Either<L, R> => {
+  try {
+    const res = fn()
+    if (isGlobal(res, ThrowerClass)) {
+      if (is(res, ThrowRight))
+        return right(res.from())
+      else return throwErr("missing throw in throwLeft")
+    }
+    else {
+      return right(res)
+    }
+  }
+  catch (e: any) {
+    if (is(e, ThrowLeft))
+      return left(e.from())
+    else throw e
+  }
 }
