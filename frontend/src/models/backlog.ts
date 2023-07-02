@@ -3,7 +3,6 @@ import { _BaseModel } from './_base'
 import type { TaskModel } from './task'
 
 export class BacklogModel extends _BaseModel {
-  // join
   ListTask!: TaskModel[]
 
   protected constructor(obj: BacklogModel) {
