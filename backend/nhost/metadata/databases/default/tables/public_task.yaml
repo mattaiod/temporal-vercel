@@ -1,3 +1,60 @@
 table:
   name: task
   schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      columns:
+        - backlog_id
+        - dayPlanning_ListTaskPriority
+        - deadline
+        - description
+        - id
+        - priority
+        - status
+        - title
+        - user_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - backlog_id
+        - createdAt
+        - dayPlanning_ListTaskPriority
+        - deadline
+        - description
+        - id
+        - priority
+        - status
+        - title
+        - updatedAt
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - backlog_id
+        - dayPlanning_ListTaskPriority
+        - deadline
+        - description
+        - id
+        - priority
+        - status
+        - title
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: {}
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
