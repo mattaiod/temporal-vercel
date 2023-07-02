@@ -1,4 +1,5 @@
-import { is, isGlobal, left, not, right, throwErr } from "./functions"
+import { is, isGlobal } from "./boolean"
+import { throwErr } from "./error"
 import type { Class } from "./types"
 
 /* Maybe */
@@ -38,6 +39,13 @@ export class Right<T> extends EitherClass<T> {
 }
 
 export type Either<L, R> = Left<L> | Right<R>
+
+export const right = <T>(value: T): Either<never, T> => new Right(value)
+export const left = <T>(value: T): Either<T, never> => new Left(value)
+
+export const either = <T, U, V, W>(either: Either<T, U>, leftFn: (val: T) => V, rightFn: (val: U) => W) => {
+  return either instanceof Right ? rightFn(either.from()) : leftFn(either.from())
+}
 
 // thrower
 abstract class ThrowerClass<T> {

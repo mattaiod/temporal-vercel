@@ -1,20 +1,17 @@
 <script setup lang="ts">
-import { useSignUpEmailPassword } from '@nhost/vue'
+import { useSignInEmailPassword } from '@nhost/vue'
 import { useRouter } from 'vue-router'
-import { tryCatch } from '../../utils/error'
 import { either } from '../../utils/monads'
 import { log } from '../../utils/log'
-import { signUpEmailPassword } from '../../services/auth'
-
-const SignUpEmailPassword = useSignUpEmailPassword()
+import { signInEmailPassword } from '../../services/auth'
 
 const router = useRouter()
-
 const email = ref('')
 const password = ref('')
+
 const handleSubmit = async (event: Event) => {
   event.preventDefault()
-  const res = await signUpEmailPassword(email.value, password.value)
+  const res = await signInEmailPassword(email.value, password.value)
   either(res, log, () => router.push('/'))
 }
 </script>
@@ -27,7 +24,7 @@ const handleSubmit = async (event: Event) => {
     <br>
 
     <button class="btn-submit" type="submit">
-      Sign up
+      Sign in
     </button>
   </form>
 </template>
