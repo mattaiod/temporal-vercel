@@ -1,0 +1,3 @@
+table:
+  name: dayPlanning
+  schema: public

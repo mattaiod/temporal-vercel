@@ -53,6 +53,7 @@
     "@types/crypto-js": "^4.1.1",
     "@types/node": "^18.14.6",
     "@types/nprogress": "^0.2.0",
+    "@types/ramda": "^0.29.3",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/test-utils": "^2.3.0",
     "critters": "^0.0.16",

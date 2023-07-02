@@ -1,0 +1,11 @@
+table:
+  name: backlog
+  schema: public
+array_relationships:
+  - name: ListTask
+    using:
+      foreign_key_constraint_on:
+        column: backlog_id
+        table:
+          name: task
+          schema: public
