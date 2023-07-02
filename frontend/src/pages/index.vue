@@ -10,19 +10,19 @@ const state = reactive({
 })
 
 const loadData = async () => {
-  const keyToFetch = "test"
-  const res = await client.query<{ test: number }>({
-    query: gql`
-      query MyQuery {
-        test {
-          test
-          test2
-        }
-      }
-    `,
-  })
+  // const keyToFetch = "test"
+  // const res = await client.query<{ test: number }>({
+  //   query: gql`
+  //     query MyQuery {
+  //       test {
+  //         test
+  //         test2
+  //       }
+  //     }
+  //   `,
+  // })
 
-  state.result = res.data
+  // state.result = res.data
 }
 
 loadData()
@@ -30,10 +30,6 @@ loadData()
 
 <template>
   <div>
-    <ul>
-      <li v-for="item in state.result" :key="item">
-        {{ item }}
-      </li>
-    </ul>
+    Hello
   </div>
 </template>

@@ -1,4 +1,4 @@
-import { NhostClient } from "@nhost/vue"
+import { NhostClient } from '@nhost/vue'
 import { createApolloClient } from "@nhost/apollo"
 import { DefaultApolloClient } from "@vue/apollo-composable"
 // import VueApolloComponents from "@vue/apollo-components";
@@ -10,14 +10,19 @@ const backendUrl = import.meta.env.VITE_NHOST_URL
 const region = import.meta.env.VITE_NHOST_REGION
 const subdomain = import.meta.env.VITE_NHOST_SUBDOMAIN
 
-export const nhost = backendUrl
-  ? new NhostClient({
-      backendUrl,
-    })
-  : new NhostClient({
-      region,
-      subdomain,
-    })
+export const nhost = new NhostClient({
+  region,
+  subdomain,
+})
+
+// export const nhost = backendUrl
+//   ? new NhostClient({
+//     backendUrl,
+//   })
+//   : new NhostClient({
+//     region,
+//     subdomain,
+//   })
 
 export const apolloClient = createApolloClient({
   nhost,
@@ -38,9 +43,11 @@ export const install: UserModule = ({ app, router }) => {
     if (to.meta.requiresAuth) {
       await nhost.auth.isAuthenticatedAsync()
       const session = nhost.auth.getSession()
-      if (session) next()
+      if (session)
+        next()
       else next("/auth/login")
-    } else {
+    }
+    else {
       next()
     }
   })
@@ -49,9 +56,11 @@ export const install: UserModule = ({ app, router }) => {
     if (to.meta.requiresNotAuth) {
       await nhost.auth.isAuthenticatedAsync()
       const session = nhost.auth.getSession()
-      if (session) next("/profile")
+      if (session)
+        next("/profile")
       else next()
-    } else {
+    }
+    else {
       next()
     }
   })
@@ -66,14 +75,18 @@ export const install: UserModule = ({ app, router }) => {
         // console.log('REQUIRED ROLES', to.meta.roles)
         let userHasRole = false
         to.meta.roles.forEach((r) => {
-          if (userRoles?.includes(r)) userHasRole = true
+          if (userRoles?.includes(r))
+            userHasRole = true
         })
-        if (userHasRole) next()
+        if (userHasRole)
+          next()
         else next("/")
-      } else {
+      }
+      else {
         next()
       }
-    } else {
+    }
+    else {
       next()
     }
   })
