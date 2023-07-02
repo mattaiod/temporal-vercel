@@ -19,7 +19,19 @@ export const signInEmailPassword = async (email: string, password: string) => {
   return await tryCatch(
     async () => {
       const res = await nhost.auth.signIn({ email, password })
-      return ifElseEither(isNotNull(res.error), () => "failed", () => res)
+      debugger
+      return ifElseEither(isNull(res.error), () => "failed", () => res)
+    },
+    () => left("failed"),
+  )
+}
+
+export const signOut = async () => {
+  return await tryCatch(
+    async () => {
+      const res = await nhost.auth.signOut()
+      debugger
+      return ifElseEither(isNull(res.error), () => "failed", () => res)
     },
     () => left("failed"),
   )

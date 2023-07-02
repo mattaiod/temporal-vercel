@@ -31,3 +31,8 @@ const handleSubmit = async (event: Event) => {
     </button>
   </form>
 </template>
+
+<route lang="yaml">
+meta:
+  requiresNotAuth: true
+</route>

@@ -57,7 +57,7 @@ export const install: UserModule = ({ app, router }) => {
       await nhost.auth.isAuthenticatedAsync()
       const session = nhost.auth.getSession()
       if (session)
-        next("/profile")
+        next("/")
       else next()
     }
     else {
@@ -65,29 +65,29 @@ export const install: UserModule = ({ app, router }) => {
     }
   })
   // ROLES GUARD
-  router.beforeEach(async (to, from, next) => {
-    if (to.meta.roles && to.meta.roles.length > 0) {
-      await nhost.auth.isAuthenticatedAsync()
-      const session = nhost.auth.getSession()
-      if (session) {
-        const userRoles = session.user?.roles
-        // console.log('ROLES USER', userRoles)
-        // console.log('REQUIRED ROLES', to.meta.roles)
-        let userHasRole = false
-        to.meta.roles.forEach((r) => {
-          if (userRoles?.includes(r))
-            userHasRole = true
-        })
-        if (userHasRole)
-          next()
-        else next("/")
-      }
-      else {
-        next()
-      }
-    }
-    else {
-      next()
-    }
-  })
+  // router.beforeEach(async (to, from, next) => {
+  //   if (to.meta.roles && to.meta.roles.length > 0) {
+  //     await nhost.auth.isAuthenticatedAsync()
+  //     const session = nhost.auth.getSession()
+  //     if (session) {
+  //       const userRoles = session.user?.roles
+  //       // console.log('ROLES USER', userRoles)
+  //       // console.log('REQUIRED ROLES', to.meta.roles)
+  //       let userHasRole = false
+  //       to.meta.roles.forEach((r) => {
+  //         if (userRoles?.includes(r))
+  //           userHasRole = true
+  //       })
+  //       if (userHasRole)
+  //         next()
+  //       else next("/")
+  //     }
+  //     else {
+  //       next()
+  //     }
+  //   }
+  //   else {
+  //     next()
+  //   }
+  // })
 }
