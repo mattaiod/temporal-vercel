@@ -10,19 +10,7 @@ const state = reactive({
 })
 
 const loadData = async () => {
-  // const keyToFetch = "test"
-  // const res = await client.query<{ test: number }>({
-  //   query: gql`
-  //     query MyQuery {
-  //       test {
-  //         test
-  //         test2
-  //       }
-  //     }
-  //   `,
-  // })
-
-  // state.result = res.data
+  const res = 
 }
 
 loadData()

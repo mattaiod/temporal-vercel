@@ -4,6 +4,10 @@ import { gql } from "@apollo/client/core"
 const { resolveClient } = useApolloClient()
 const client = resolveClient()
 
+
+const export fetchAllData_User = async (userId: UserId) => {
+
+
 const res = await client.query({
   query: gql`
     query MyQuery {
