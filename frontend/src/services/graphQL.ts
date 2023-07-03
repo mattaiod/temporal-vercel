@@ -1,46 +1,42 @@
 import { useApolloClient } from '@vue/apollo-composable'
 import { gql } from "@apollo/client/core"
+import type { IdUser } from '~/models/user'
+import { nhost } from '~/modules/nhost'
 
-const { resolveClient } = useApolloClient()
-const client = resolveClient()
-
-
-const export fetchAllData_User = async (userId: UserId) => {
-
-
-const res = await client.query({
-  query: gql`
-    query MyQuery {
-      backlog(where: {user_id: {_eq: "b84dec46-260c-4866-8a9e-ec0dc07ecd31"}}) {
+export const fetchAllData_User = async (userId: IdUser) => {
+  const Request = gql`
+  query ($userId: uuid!) {
+    backlog(where: {user_id: {_eq: $userId}}) {
+      createdAt
+      id
+      updatedAt
+      ListTask(where: {dayPlanning_id: {_is_null: false}}) {
         createdAt
-        id
         updatedAt
-        ListTask(where: {dayPlanning_id: {_is_null: false}}) {
-          createdAt
-          updatedAt
-          title
-          status
-          priority
-          id
-          description
-          deadline
-        }
+        title
+        status
+        priority
+        id
+        description
+        deadline
       }
-      dayPlanning {
-        ListTask(where: {dayPlanning_id: {_is_null: false}}) {
-          createdAt
-          deadline
-          description
-          id
-          priority
-          status
-          timeBegin
-          timeEnd
-          title
-          updatedAt
-        }
+    }
+    dayPlanning {
+      ListTask(where: {dayPlanning_id: {_is_null: false}}) {
+        createdAt
+        deadline
+        description
+        id
+        priority
+        status
+        timeBegin
+        timeEnd
+        title
+        updatedAt
       }
-  }
-`,
-})
+    },
+  } 
+`
+  return await nhost.graphql.request(Request, { userId })
+}
 
