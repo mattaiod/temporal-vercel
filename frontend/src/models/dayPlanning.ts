@@ -15,7 +15,7 @@ export class DayPlanningModel extends _BaseModel<IdDayPlanning> {
     hydrateStrict(this, obj)
   }
 
-  static make(obj: DayPlanningModel): Either<ErrorValueForbidden, DayPlanningModel> {
+  static make(obj: DayPlanningModel): Either<never, DayPlanningModel> {
     return right(new this(obj))
   }
 }

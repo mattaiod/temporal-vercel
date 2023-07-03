@@ -13,7 +13,7 @@ export class BacklogModel extends _BaseModel<IdBacklog> {
     hydrateStrict(this, obj)
   }
 
-  static make(obj: BacklogModel): Either<ErrorValueForbidden, BacklogModel> {
+  static make(obj: BacklogModel): Either<never, BacklogModel> {
     return right(new this(obj))
   }
 }

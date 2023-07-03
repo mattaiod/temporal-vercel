@@ -28,7 +28,6 @@ export const signOut = async () => {
   return await tryCatch(
     async () => {
       const res = await nhost.auth.signOut()
-      debugger
       return ifElseEither(isNull(res.error), () => "failed", () => res)
     },
     () => left("failed"),
