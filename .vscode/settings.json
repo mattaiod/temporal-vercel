@@ -1,0 +1,7 @@
+{
+  "i18n-ally.localesPaths": ["frontend/locales"],
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "files.associations": {
+    "*.css": "postcss"
+  }
+}

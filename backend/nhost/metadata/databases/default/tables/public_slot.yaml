@@ -1,0 +1,39 @@
+table:
+  name: slot
+  schema: public
+object_relationships:
+  - name: task
+    using:
+      foreign_key_constraint_on: task_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - timeBegin
+        - timeEnd
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - createdAt
+        - id
+        - timeBegin
+        - timeEnd
+        - updatedAt
+      filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - dayPlanning_id
+        - id
+        - task_id
+        - timeBegin
+        - timeEnd
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: user
+    permission:
+      filter: {}

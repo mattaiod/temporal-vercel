@@ -1,0 +1,26 @@
+table:
+  name: backlog
+  schema: public
+array_relationships:
+  - name: ListTask
+    using:
+      manual_configuration:
+        column_mapping:
+          user_id: backlog_id
+        insertion_order: null
+        remote_table:
+          name: task
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - createdAt
+        - id
+        - updatedAt
+        - user_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      limit: 1
+      allow_aggregations: true

@@ -1,0 +1,61 @@
+table:
+  name: dayPlanning
+  schema: public
+array_relationships:
+  - name: ListSlot
+    using:
+      manual_configuration:
+        column_mapping:
+          id: dayPlanning_id
+        insertion_order: null
+        remote_table:
+          name: slot
+          schema: public
+  - name: ListTaskPriorityMax3
+    using:
+      manual_configuration:
+        column_mapping:
+          id: dayPlanning_ListTaskPriority
+        insertion_order: null
+        remote_table:
+          name: task
+          schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+        - createdAt
+        - date
+        - id
+        - updatedAt
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - createdAt
+        - date
+        - id
+        - updatedAt
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - date
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: {}
+delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id

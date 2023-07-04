@@ -1,0 +1,3 @@
+table:
+  name: backlog_task
+  schema: public
